@@ -20,3 +20,9 @@ class BaseModelTest(unittest.TestCase):
         self.assertIsNotNone(dt.isoformat(test_model.updated_at))
         self.assertTrue(valid_uuid(str(test_model.id)))
 
+    def test_to_dict(self):
+        base_dt = self.base.to_dict()
+        self.assertEqual(base_dt)
+
+    def test_str(self):
+        
