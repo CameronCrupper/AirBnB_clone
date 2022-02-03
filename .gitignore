@@ -3,3 +3,4 @@
 
 # ignore pycaches
 __pycache__/
+**/__pycache__

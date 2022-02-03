@@ -24,7 +24,7 @@ class BaseModel:
         """
         This makes a pretty string representation of our BaseModel object
         """
-        return f"[BaseModel] ({self.id}) {self.__dict__}"
+        return f"[BaseModel] ({str(self.id)}) {self.__dict__}"
 
     def save(self):
         """
@@ -34,14 +34,14 @@ class BaseModel:
 
     def to_dict(self):
         """
-        Returns dictionary of all key/values
+        Returns new_dict of all key/values
         converts info into human readable info
         """
-        dictionary = dict(self.__dict__)
+        new_dict = self.__dict__.copy()
         d = {'created_at': dt.isoformat(self.created_at)}
-        dictionary = dictionary.update(d)
+        new_dict.update(d)
         d = {'updated_at': dt.isoformat(self.updated_at)}
-        dictionary = dictionary.update(d)
+        new_dict.update(d)
         d = {'__class__': self.__class__.__name__}
-        dictionary = dictionary.update(d)
-        return dictionary
+        new_dict.update(d)
+        return new_dict
