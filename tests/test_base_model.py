@@ -52,16 +52,17 @@ class BaseModelTest(unittest.TestCase):
         """
         Testing to_dict.
         """
-        User1_dict = self.User1.to_dict()
-        self.assertEqual(User1_dict['__class__'], 'BaseModel')
-        self.assertEqual(User1_dict['created_at'],
-                         self.User1.created_at.isoformat())
-        self.assertEqual(User1_dict['updated_at'],
-                         self.User1.updated_at.isoformat())
-        self.assertEqual(User1_dict['id'], self.User1.id)
+        test_model = BaseModel()
+        tmd = test_model.to_dict()
+        self.assertEqual(tmd['__class__'], 'BaseModel')
+        self.assertEqual(tmd['created_at'],
+                         test_model.created_at.isoformat())
+        self.assertEqual(tmd['updated_at'],
+                         test_model.updated_at.isoformat())
+        self.assertEqual(tmd['id'], test_model.id)
         #test looking for attr that doesn't exist
         with self.assertRaises(AttributeError):
-            getattr(self.User1, 'NonExistentKey')
+            getattr(test_model, 'NonExistentKey')
         #set attr and test it
-        self.User1.Job = "Code Monkey"
-        self.assertTrue(self.User1.Job, exists)
+        test_model.Job = "Code Monkey"
+        self.assertIsNotNone(test_model.Job)
