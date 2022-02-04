@@ -26,14 +26,6 @@ class BaseModelTest(unittest.TestCase):
         self.assertIsNotNone(dt.isoformat(test_model.updated_at))
         self.assertTrue(valid_uuid(str(test_model.id)))
 
-    def test_to_dict(self):
-        """
-        Test the conversion of the object into a dictionary
-        """
-        # base_dt = self.to_dict()
-        pass
-        # self.assertEqual(base_dt)
-
     def test_str(self):
         test_model = BaseModel()
         expected_str = f"[BaseModel] ({str(test_model.id)}) {test_model.__dict__}"
