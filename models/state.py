@@ -10,7 +10,6 @@ Has attributes for States
 from models.base_model import BaseModel
 
 
-
 class State(BaseModel):
     """
     Class State
