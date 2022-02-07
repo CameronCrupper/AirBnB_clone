@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """
 Console
 Entry point for command interpreter
