@@ -12,19 +12,13 @@ from datetime import datetime
 from models.base_model import BaseModel
 
 
-
 class HBNBCommand(cmd.Cmd):
     """
     class created for command processor
     """
     prompt = '(hbnb) '
-    classes = ['BaseModel',
-                'User',
-                'State',
-                'City',
-                'Amenity',
-                'Place',
-                'Review']
+    classes = ['BaseModel', 'User', 'State', 'City',
+               'Amenity', 'Place', 'Review']
 
     def do_quit(self):
         """
@@ -50,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
         """
         cmd_ln = self.parseline(line)[0]
         if len(line) == 0:
-            print ("** class name missing **")
+            print("** class name missing **")
         elif cmd_ln not in self.classes:
             print("** class doesn't exist **")
         else:
@@ -69,7 +63,7 @@ class HBNBCommand(cmd.Cmd):
         elif cmd_ln not in self.classes:
             print("** class doesn't exist **")
         elif arg == '':
-            print ("** instance id missing **")
+            print("** instance id missing **")
         else:
             instance_class_name = models.storage.all().get(cmd_ln + '.' + arg)
             if instance_class_name is None:
@@ -103,12 +97,12 @@ class HBNBCommand(cmd.Cmd):
         prints str of ALL instances if its class name or not
         """
         cmd_ln = self.parseline(line)[0]
-        object = models.storage.all()
+        objt = models.storage.all()
         if cmd_ln is None:
-            print([str(object[obj]) for obj in object])
+            print([str(objt[obj]) for obj in objt])
         elif cmd_ln in self.classes:
-            temp = object.keys()
-            print([str(object[temp]) for key in temp if key.startswith(cmd_ln)])
+            temp = objt.keys()
+            print([str(objt[temp]) for key in temp if key.startswith(cmd_ln)])
         else:
             print("** class doesn't exist **")
 
@@ -163,6 +157,7 @@ class HBNBCommand(cmd.Cmd):
                 setattr(inst_data, args[2], args[3])
                 setattr(inst_data, 'updated_at', datetime.now())
                 models.storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
