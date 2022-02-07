@@ -20,17 +20,18 @@ class HBNBCommand(cmd.Cmd):
     classes = ['BaseModel', 'User', 'State', 'City',
                'Amenity', 'Place', 'Review']
 
-    def do_quit(self):
+    def do_quit(self, line):
         """
         quits out of the program
         """
-        return True
+        quit()
 
-    def do_EOF(self):
+    def do_EOF(self, line):
         """
         End of file for the program
         """
-        return True
+        print()
+        raise SystemExit
 
     def empty_line(self):
         """
