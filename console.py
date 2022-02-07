@@ -19,7 +19,8 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-
+classes_c = {'BaseModel': BaseModel, 'User': User, 'State': State, 'City': City,
+           'Amenity': Amenity, 'Place': Place, 'Review': Review}
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -106,15 +107,15 @@ class HBNBCommand(cmd.Cmd):
         """
         prints str of ALL instances if its class name or not
         """
-        cmd_ln = self.parseline(line)[0]
-        objt = models.storage.all()
-        if cmd_ln is None:
-            print([str(objt[obj]) for obj in objt])
-        elif cmd_ln in self.classes:
-            temp = objt.keys()
-            print([str(objt[temp]) for key in temp if key.startswith(cmd_ln)])
-        else:
+        if line == "":
+            for k in storage.all():
+                print([str(storage.all()[k])])
+        elif line not in classes_c.keys():
             print("** class doesn't exist **")
+        else:
+            for k, v in storage.all().items():
+                if line == v.__class__.__name__:
+                    print([str(storage.all()[k])])
 
     def do_update(self, line):
         """
