@@ -45,6 +45,9 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, line):
+        """
+        New instance of BaseModel
+        """
         cmd_ln = self.parseline(line)[0]
         if len(line) == 0:
             print ("** class name missing **")
@@ -56,6 +59,9 @@ class HBNBCommand(cmd.Cmd):
             print(new_object.id)
 
     def do_show(self, line):
+        """
+        Prints str of an instance based on class name and id
+        """
         cmd_ln = self.parseline(line)[0]
         arg = self.parseline(line)[1]
         if cmd_ln is None:
@@ -72,6 +78,9 @@ class HBNBCommand(cmd.Cmd):
                 print(instance_class_name)
 
     def do_destroy(self, line):
+        """
+        delete instance based on class name and id
+        """
         cmd_ln = self.parseline(line)[0]
         arg = self.parseline(line)[1]
         if cmd_ln is None:
@@ -90,6 +99,9 @@ class HBNBCommand(cmd.Cmd):
                 models.storage.save()
 
     def do_all(self, line):
+        """
+        prints str of ALL instances if its class name or not
+        """
         cmd_ln = self.parseline(line)[0]
         object = models.storage.all()
         if cmd_ln is None:
@@ -125,8 +137,9 @@ class HBNBCommand(cmd.Cmd):
                                 models.storage.save()
 """
     def do_update(self, line):
-        """Updates an instance based on the class name and id
-        by adding or updating attribute.
+        """
+        updates instance based on class name & id
+        with adding or updating and attribute
         """
         args = shlex.split(line)
         args_size = len(args)
