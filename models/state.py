@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 State Module
 Inherits from BaseModel

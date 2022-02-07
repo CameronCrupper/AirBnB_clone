@@ -2,6 +2,7 @@
 
 """
 Review Module
+inherits from basemodel
 User created reviews
 """
 
