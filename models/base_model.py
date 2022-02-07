@@ -21,7 +21,7 @@ class BaseModel:
             raise SyntaxError("BaseModel.update does not support args, use kwargs instead.")
         self.created_at = dt.now()
         self.updated_at = self.created_at
-        self.id = uuid4()
+        self.id = str(uuid4())
         self.update(**kwargs)
         models.storage.new(self)
 
@@ -63,7 +63,7 @@ class BaseModel:
         """
         This makes a pretty string representation of our BaseModel object
         """
-        return f"[BaseModel] ({str(self.id)}) {self.__dict__}"
+        return f"[BaseModel] ({self.id}) {self.__dict__}"
 
     def save(self):
         """
