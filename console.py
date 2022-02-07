@@ -1,15 +1,16 @@
 #!/usr/bin/python3
-
 """
 Console
 Entry point for command interpreter
 Should be able to make, edit, and delete things
 """
-import shlex
 import cmd
 import models
 from datetime import datetime
 from models.base_model import BaseModel
+from models import storage
+from models.engine.file_storage import FileStorage
+import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -20,20 +21,20 @@ class HBNBCommand(cmd.Cmd):
     classes = ['BaseModel', 'User', 'State', 'City',
                'Amenity', 'Place', 'Review']
 
-    def do_quit(self, line):
+    def do_quit(self, *line):
         """
         quits out of the program
         """
         quit()
 
-    def do_EOF(self, line):
+    def do_EOF(self, *line):
         """
         End of file for the program
         """
         print()
         raise SystemExit
 
-    def empty_line(self):
+    def emptyline(self):
         """
         does nothing passes epty line
         """
