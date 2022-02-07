@@ -18,7 +18,8 @@ class BaseModel:
         Initialize the BaseModel object
         """
         if len(args) > 0:
-            raise SyntaxError("BaseModel.update does not support args, use kwargs instead.")
+            raise SyntaxError("BaseModel.update does not support args,\
+                use kwargs instead.")
         self.created_at = dt.now()
         self.updated_at = self.created_at
         self.id = str(uuid4())
@@ -30,7 +31,8 @@ class BaseModel:
         Update the BaseModel with new arbitrary properties
         """
         if len(args) > 0:
-            raise SyntaxError("BaseModel.update does not support args, use kwargs instead.")
+            raise SyntaxError("BaseModel.update does not support args, \
+                use kwargs instead.")
         for i in kwargs:
             if i == "id":
                 self.id = kwargs[i]
@@ -40,11 +42,13 @@ class BaseModel:
                     try:
                         dto = dt.fromisoformat(newtime)
                     except ValueError:
-                        raise ValueError("value for created_at must be a valid ISO format time string")
+                        raise ValueError("value for created_at must be\
+                            a valid ISO format time string")
                 elif newtime.__class__.__name__ == "datetime":
                     dto = dt.fromisoformat(dt.isoformat(newtime))
                 else:
-                    raise ValueError("value for created_at must be a valid ISO format time string")
+                    raise ValueError("value for created_at must be a\
+                        valid ISO format time string")
                 self.created_at = dto
             if i == "updated_at":
                 newtime = kwargs[i]
@@ -52,11 +56,13 @@ class BaseModel:
                     try:
                         dto = dt.fromisoformat(newtime)
                     except ValueError:
-                        raise ValueError("value for updated_at must be a valid ISO format time string")
+                        raise ValueError("value for updated_at must be a\
+                            valid ISO format time string")
                 elif newtime.__class__.__name__ == "datetime":
                     dto = dt.fromisoformat(dt.isoformat(newtime))
                 else:
-                    raise ValueError("value for updated_at must be a valid ISO format time string")
+                    raise ValueError("value for updated_at must be a\
+                        valid ISO format time string")
                 self.updated_at = dto
 
     def __str__(self):
