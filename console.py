@@ -142,7 +142,8 @@ class HBNBCommand(cmd.Cmd):
             elif args_size == 3:
                 print('** value missing **')
             else:
-                args[3] = self.analyze_parameter_value(args[3])
+                # print(f"args3 is {args[3]}")
+                # args[3] = self.analyze_parameter_value(args[3])
                 setattr(inst_data, args[2], args[3])
                 setattr(inst_data, 'updated_at', datetime.now())
                 models.storage.save()
