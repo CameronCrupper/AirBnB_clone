@@ -8,19 +8,6 @@ import unittest
 import re
 from time import sleep
 
-
-def valid_uuid(uuid):
-    """"
-    This function tests if uuid is valid, returns bool
-    """
-    regexa = "[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}"
-    regexb = "^-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}\Z"
-    regexc = regexa + regexb
-    regex = re.compile(regexc, re.I)
-    match = regex.match(uuid)
-    return bool(match)
-
-
 class BaseModelTest(unittest.TestCase):
     """
     This tests the methods related to BaseModel class
@@ -29,7 +16,6 @@ class BaseModelTest(unittest.TestCase):
         test_model = BaseModel()
         self.assertIsNotNone(dt.isoformat(test_model.created_at))
         self.assertIsNotNone(dt.isoformat(test_model.updated_at))
-        self.assertTrue(valid_uuid(str(test_model.id)))
 
     def test_str(self):
         test_model = BaseModel()
