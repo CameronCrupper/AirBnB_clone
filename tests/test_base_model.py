@@ -8,6 +8,7 @@ import unittest
 import re
 from time import sleep
 
+
 class BaseModelTest(unittest.TestCase):
     """
     This tests the methods related to BaseModel class
