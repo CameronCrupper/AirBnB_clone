@@ -8,13 +8,18 @@ import unittest
 import re
 from time import sleep
 
+
 def valid_uuid(uuid):
     """"
     This function tests if uuid is valid, returns bool
     """
-    regex = re.compile('^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}\Z', re.I)
+    regexa = "[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}"
+    regexb = "^-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}\Z"
+    regexc = regexa + regexb
+    regex = re.compile(regexc, re.I)
     match = regex.match(uuid)
     return bool(match)
+
 
 class BaseModelTest(unittest.TestCase):
     """
@@ -28,7 +33,7 @@ class BaseModelTest(unittest.TestCase):
 
     def test_str(self):
         test_model = BaseModel()
-        expected_str = f"[BaseModel] ({str(test_model.id)}) {test_model.__dict__}"
+        expected_str = f"[BaseModel] ({test_model.id}) {test_model.__dict__}"
         self.assertEqual(expected_str, str(test_model))
 
     def test_save(self):
@@ -52,9 +57,9 @@ class BaseModelTest(unittest.TestCase):
         self.assertEqual(tmd['updated_at'],
                          test_model.updated_at.isoformat())
         self.assertEqual(tmd['id'], test_model.id)
-        #test looking for attr that doesn't exist
+        # test looking for attr that doesn't exist
         with self.assertRaises(AttributeError):
             getattr(test_model, 'NonExistentKey')
-        #set attr and test it
+        # set attr and test it
         test_model.Job = "Code Monkey"
         self.assertIsNotNone(test_model.Job)

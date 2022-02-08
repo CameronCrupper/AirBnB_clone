@@ -19,8 +19,10 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-classes_c = {'BaseModel': BaseModel, 'User': User, 'State': State, 'City': City,
-           'Amenity': Amenity, 'Place': Place, 'Review': Review}
+classes_c = {'BaseModel': BaseModel, 'User': User, 'State': State,
+             'City': City, 'Amenity': Amenity, 'Place': Place,
+             'Review': Review}
+
 
 class HBNBCommand(cmd.Cmd):
     """
