@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """
-This module is the unittest file for the class: User.
+This module is the unittest file for the class: Place.
 """
 from genericpath import exists
 import unittest
-from models.user import User
+from models.place import Place
 from models.engine.file_storage import FileStorage
 import pep8
 from models import storage
@@ -12,24 +12,24 @@ from models import storage
 
 class TestBaseClass(unittest.TestCase):
     """
-    This class is for testing User.
+    This class is for testing Place.
     """
     def setUp(self):
         """
         Setup method.
         """
-        self.User1 = User()
-        self.User2 = User()
-        User3_dict = self.User1.to_dict()
-        self.User3 = User(**User3_dict)
+        self.Place1 = Place()
+        self.Place2 = Place()
+        Place3_dict = self.Place1.to_dict()
+        self.Place3 = Place(**Place3_dict)
 
     def tearDown(self):
         """
         Teardown method.
         """
-        del self.User1
-        del self.User2
-        del self.User3
+        del self.Place1
+        del self.Place2
+        del self.Place3
         storage.save()
 
     def test_pep8(self):
@@ -46,16 +46,23 @@ class TestBaseClass(unittest.TestCase):
         tests for module, class, & method documentation.
         """
         # Class docstring
-        self.assertTrue(len(User.__doc__) >= 1)
+        self.assertTrue(len(Place.__doc__) >= 1)
 
     def test_init(self):
         """
         Tests the init method.
         """
-        self.assertEqual(self.User1.email, "")
-        self.assertEqual(self.User1.password, "")
-        self.assertEqual(self.User1.first_name, "")
-        self.assertEqual(self.User1.last_name, "")
+        self.assertEqual(self.Place1.city_id, "")
+        self.assertEqual(self.Place1.user_id, "")
+        self.assertEqual(self.Place1.name, "")
+        self.assertEqual(self.Place1.description, "")
+        self.assertEqual(self.Place1.number_rooms, 0)
+        self.assertEqual(self.Place1.number_bathrooms, 0)
+        self.assertEqual(self.Place1.max_guest, 0)
+        self.assertEqual(self.Place1.price_by_night, 0)
+        self.assertEqual(self.Place1.latitude, 0.0)
+        self.assertEqual(self.Place1.longitude, 0.0)
+        self.assertEqual(self.Place1.amenity_ids, [])
 
 if __name__ == "__main__":
     unittest.main()

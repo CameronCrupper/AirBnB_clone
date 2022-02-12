@@ -27,7 +27,7 @@ dt1111 = dt.fromisoformat(eleven11)
 """ print(foi) """
 """ print(formatted)
  """
-newargs = {'id': uuid4(), 'created_at': yesterday }
+newargs = {'id': uuid4(), 'created_at': yesterday}
 
 tno = BaseModel(**newargs)
 newargs = {'id': uuid4(), 'updated_at': future}
