@@ -51,4 +51,6 @@ class FileStorage:
                 json_dict = json.load(f)
                 from console import classes_c
                 for key in json_dict.keys():
-                    self.__objects[key] = classes_c[json_dict[key]["__class__"]](**json_dict[key])
+                    self.__objects[key] = classes_c[json_dict[key]
+                                                    ["__class__"]](
+                                                        **json_dict[key])
